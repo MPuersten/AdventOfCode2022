@@ -13,9 +13,9 @@ export default class RpsGame {
 
     private getChoiceScore(choice: string): number{
         let score: number;
-        if (choice === 'X') score = 1;
-        else if (choice === 'Y') score = 2;
-        else if (choice === 'Z') score = 3;
+        if (choice === 'X') score = 0;
+        else if (choice === 'Y') score = 3;
+        else if (choice === 'Z') score = 6;
         else {
             score = 0;
         }
@@ -28,20 +28,20 @@ export default class RpsGame {
         
         if (theirChoice === 'A') {
             if (myChoice === 'X') score = 3;
-            else if (myChoice === 'Y') score = 6;
-            else if (myChoice === 'Z') score = 0;
+            else if (myChoice === 'Y') score = 1;
+            else if (myChoice === 'Z') score = 2;
             else score = 0;
         }
         else if (theirChoice === 'B') {
-            if (myChoice === 'X') score = 0;
-            else if (myChoice === 'Y') score = 3;
-            else if (myChoice === 'Z') score = 6;
+            if (myChoice === 'X') score = 1;
+            else if (myChoice === 'Y') score = 2;
+            else if (myChoice === 'Z') score = 3;
             else score = 0;
         }
         else {
-            if (myChoice === 'X') score = 6;
-            else if (myChoice === 'Y') score = 0;
-            else if (myChoice === 'Z') score = 3;
+            if (myChoice === 'X') score = 2;
+            else if (myChoice === 'Y') score = 3;
+            else if (myChoice === 'Z') score = 1;
             else score = 0;
         }
 
