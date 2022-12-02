@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import Elf from './elf';
+import ElfCollection from './elfCollection';
 import SnackContainer from './interfaces/SnackContainer';
 import SnackLedgerInterpreter from './snackLedgerInterpreter'
 
@@ -15,20 +16,11 @@ for (let i = 0; i < snackLists.length; i++) {
 }
 
 console.log('Number of elves: ' + elves.length);
+let elfCollection: ElfCollection = new ElfCollection(elves as Elf[]);
 
 // Find highest calorie count
-let highestCalorieElf = 0;
-let highestCalories = 0;
+let highestCalories = elfCollection.mostCaloriesInSingleElf;
 
-for (let i = 0; i < elves.length; i++) {
-
-
-    if (elves[i].calorieCount > highestCalories) {
-        highestCalorieElf = i + 1;
-        highestCalories = elves[i].calorieCount;
-    }
-}
-
-console.log('Highest calories carrying elf: ' + highestCalorieElf);
 console.log('Calorie count: ' + highestCalories);
+
 

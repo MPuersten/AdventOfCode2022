@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var elf_1 = require("./elf");
+var elfCollection_1 = require("./elfCollection");
 var snackLedgerInterpreter_1 = require("./snackLedgerInterpreter");
 var snackLedger = fs.readFileSync('../assets/d1-input.txt', 'utf-8');
 var interpreter = new snackLedgerInterpreter_1.default();
@@ -12,14 +13,7 @@ for (var i = 0; i < snackLists.length; i++) {
     elves.push(new elf_1.default(snackLists[i]));
 }
 console.log('Number of elves: ' + elves.length);
+var elfCollection = new elfCollection_1.default(elves);
 // Find highest calorie count
-var highestCalorieElf = 0;
-var highestCalories = 0;
-for (var i = 0; i < elves.length; i++) {
-    if (elves[i].calorieCount > highestCalories) {
-        highestCalorieElf = i + 1;
-        highestCalories = elves[i].calorieCount;
-    }
-}
-console.log('Highest calories carrying elf: ' + highestCalorieElf);
+var highestCalories = elfCollection.mostCaloriesInSingleElf;
 console.log('Calorie count: ' + highestCalories);

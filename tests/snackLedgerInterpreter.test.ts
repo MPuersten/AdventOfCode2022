@@ -11,7 +11,6 @@ describe('Snack Ledger Interpreter', () => {
         
         let calorieList: number[][] = interpreter.getCalorieLists(snackLedger);
         
-        console.log(calorieList);
         expect(calorieList.length).toEqual(expectedLength);
         expect(calorieList[0].length).toEqual(expectedFirstListLength);
         expect(calorieList[2][0]).toEqual(expectedLastValue);
