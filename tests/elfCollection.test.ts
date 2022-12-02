@@ -31,7 +31,7 @@ describe('Elf collection tests', () => {
 
     test('Elf collection can report the highest 3 elf max calorie count', ()=> {
         let numElves: number = 3;
-        let expectedCalorieCount: number = 0;
+        let expectedCalorieCount: number = 193697;
         expect(_elfCollection.getHighestCalorieTotal(numElves)).toEqual(expectedCalorieCount);
     })
 
