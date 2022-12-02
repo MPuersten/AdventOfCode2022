@@ -24,8 +24,15 @@ describe('Elf collection tests', () => {
     })
     
     test('Elf collection can report the highest single calorie count', ()=> {
+        let numElves = 1;
         let expectedCalorieCount: number = 64929;
-        expect(_elfCollection.mostCaloriesInSingleElf).toEqual(expectedCalorieCount);
+        expect(_elfCollection.getHighestCalorieTotal(numElves)).toEqual(expectedCalorieCount);
+    })
+
+    test('Elf collection can report the highest 3 elf max calorie count', ()=> {
+        let numElves: number = 3;
+        let expectedCalorieCount: number = 0;
+        expect(_elfCollection.getHighestCalorieTotal(numElves)).toEqual(expectedCalorieCount);
     })
 
     test('Elf collection can report the number of elves', ()=> {

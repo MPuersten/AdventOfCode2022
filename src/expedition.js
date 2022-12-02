@@ -15,5 +15,6 @@ for (var i = 0; i < snackLists.length; i++) {
 console.log('Number of elves: ' + elves.length);
 var elfCollection = new elfCollection_1.default(elves);
 // Find highest calorie count
-var highestCalories = elfCollection.mostCaloriesInSingleElf;
+var numElvesForTotal = 3;
+var highestCalories = elfCollection.getHighestCalorieTotal(numElvesForTotal);
 console.log('Calorie count: ' + highestCalories);

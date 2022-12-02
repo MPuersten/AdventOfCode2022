@@ -19,7 +19,8 @@ console.log('Number of elves: ' + elves.length);
 let elfCollection: ElfCollection = new ElfCollection(elves as Elf[]);
 
 // Find highest calorie count
-let highestCalories = elfCollection.mostCaloriesInSingleElf;
+let numElvesForTotal: number = 3;
+let highestCalories = elfCollection.getHighestCalorieTotal(numElvesForTotal);
 
 console.log('Calorie count: ' + highestCalories);
 

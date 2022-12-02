@@ -11,19 +11,43 @@ export default class ElfCollection {
         return this._elves.length;
     }
 
-    public get mostCaloriesInSingleElf(): number {
-        let highestCalorieElf = 0;
-        let highestCalories = 0;
+    public getHighestCalorieTotal(numElvesInGrouping: number): number {
+        let highestCalorieElves: Elf[] = [];
 
-        for (let i = 0; i < this._elves.length; i++) {
+        highestCalorieElves.push(this._elves[0]);
+        let lowestCountInTotal: number = this._elves[0].calorieCount;
+        let lowestCountInTotalIndex: number = 0;
 
+        for (let i = 1; i < numElvesInGrouping; i++) {
+            highestCalorieElves.push(this._elves[i]);
 
-            if (this._elves[i].calorieCount > highestCalories) {
-                highestCalorieElf = i + 1;
-                highestCalories = this._elves[i].calorieCount;
+            if (this._elves[i].calorieCount < lowestCountInTotal) {
+                lowestCountInTotal = this._elves[i].calorieCount;
+                lowestCountInTotalIndex = i;
             }
         }
 
-        return highestCalories;
+        for (let i = numElvesInGrouping; i < this._elves.length; i++) {
+            if (this._elves[i].calorieCount > lowestCountInTotal) {
+                highestCalorieElves[lowestCountInTotalIndex] = this._elves[i];
+
+                lowestCountInTotal = highestCalorieElves[0].calorieCount;
+                lowestCountInTotalIndex = 0;
+
+                for (let j = 1; j < numElvesInGrouping; j++) {
+                    if (highestCalorieElves[j].calorieCount < lowestCountInTotal) {
+                        lowestCountInTotal = highestCalorieElves[j].calorieCount;
+                        lowestCountInTotalIndex = j;
+                    }
+                }
+            }
+        }
+
+        let total = 0;
+        for (let i = 0; i < numElvesInGrouping; i++) {
+            total += highestCalorieElves[i].calorieCount;
+        }
+
+        return total;
     }
 }
