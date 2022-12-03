@@ -4,12 +4,15 @@ export function getCharacterPriority(character: string): number {
     
     let priority: number;
     
-    console.log(character);
+    priority = character.charCodeAt(0);
+
     if (isUppercase(character)) {
-        return 1;
+        let upperCaseShift: number = 38;
+        priority -= upperCaseShift;
     }
     else /*lowercase*/ {
-        return 0;
+        let lowerCaseShift: number = 96;
+        priority -= lowerCaseShift;
     }
 
     if (priority < minPriority || priority > maxPriority) {
