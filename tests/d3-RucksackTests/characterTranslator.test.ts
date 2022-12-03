@@ -1,4 +1,4 @@
-import { getCharacterPriority } from "../../src/d3-RuckSack/characterTranslator";
+import { getCharacterPriority } from "../../src/d3-RuckSack/characterPriorityTranslator";
 
 describe('Character Translator', () => {
     test('Simple test that should always pass', ()=> {
