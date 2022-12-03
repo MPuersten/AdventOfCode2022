@@ -13,3 +13,19 @@ for (let i = 0; i < ruckSackInputs.length; i++) {
 }
 
 console.log("PrioritySum: " + prioritySum);
+
+let badgeTotal: number = 0;
+for (let i = 0; i < ruckSackInputs.length; i += 3){
+
+    for (let j = 0; j < ruckSackInputs[i].length; j++) {
+            let result1 = ruckSackInputs[i + 1].indexOf(ruckSackInputs[i][j]);
+            let result2 = ruckSackInputs[i + 2].indexOf(ruckSackInputs[i][j]);
+            if (result1 !== -1 && result2 !== -1) {
+                badgeTotal += getCharacterPriority(ruckSackInputs[i][j])
+                break;
+            }
+    }
+    
+}
+
+console.log("BadgeSum: " + badgeTotal);
