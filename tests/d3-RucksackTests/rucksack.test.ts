@@ -1,6 +1,12 @@
+import BisectingRucksack from "../../src/d3-RuckSack/rucksack"
+
 describe('Rucksack', () => {
-    test('Simple test that should always pass', ()=> {
-        let value: number = 0;
-        expect(value).toEqual(value);
+    test('Find repeated character after bisection', ()=> {
+        let input: string = 'abcade';
+        let repeatedCharacter = 'a';
+
+        let sack: BisectingRucksack = new BisectingRucksack(input);
+
+        expect(sack.repeatedCharacter).toBe(repeatedCharacter);
     })
 })
