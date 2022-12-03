@@ -8,7 +8,7 @@ describe('Elf collection tests', () => {
     let _elfCollection: ElfCollection;
 
     beforeEach(() => {
-        let snackLedger: string = fs.readFileSync('../assets/d1-input.txt', 'utf-8');
+        let snackLedger: string = fs.readFileSync('./assets/d1-input.txt', 'utf-8');
 
         let interpreter: SnackLedgerInterpreter = new SnackLedgerInterpreter();
         let individualElfSnackLists: number[][] = interpreter.getCalorieLists(snackLedger);

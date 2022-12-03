@@ -1,4 +1,4 @@
-import RpsStrategyGame from "../src/rockPaperScissors/rpsStrategyGame";
+import RpsStrategyGame from "../src/D2-RockPaperScissors/rpsStrategyGame";
 
 describe('Rock Paper Scissors Game', () => {
     test('Get Win Score, with Paper', ()=> {
