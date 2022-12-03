@@ -1,4 +1,4 @@
-import RpsSelectionGame from "../src/rockPaperScissors/rpsSelectionGame";
+import RpsSelectionGame from "../src/D2-RockPaperScissors/rpsSelectionGame";
 
 describe('Rock Paper Scissors Game', () => {
     test('Need draw, pick Rock', ()=> {
