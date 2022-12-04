@@ -13,7 +13,6 @@ for (var i = 0; i < ruckSackInputs.length; i++) {
     prioritySum += (0, characterPriorityTranslator_1.getCharacterPriority)(rucksack.repeatedCharacter);
 }
 console.log("PrioritySum: " + prioritySum);
-console.log(ruckSackInputs.length);
 var badgeTotal = 0;
 for (var i = 0; i < ruckSackInputs.length; i += 3) {
     for (var j = 0; j < ruckSackInputs[i].length; j++) {
