@@ -24,10 +24,6 @@ export default class Instruction {
     }
 
     public enact(stacks: string[][]): string[][] {
-        console.log(stacks);
-        console.log(this._containersToMove);
-        console.log(this._from);
-        console.log(this._to);
         for (let i = 0; i < this._containersToMove; i++) {
             let container = stacks[this._from - 1].pop();
 

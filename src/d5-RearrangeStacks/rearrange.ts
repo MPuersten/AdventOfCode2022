@@ -4,7 +4,6 @@ import Instruction from './instruction'
 
 function rearrangeStacks(stacks: string[][], instructions: Instruction[]): string[][] {
     for (let i = 0; i < instructions.length; i++) {
-        console.log(i);
         stacks = instructions[i].enact(stacks);
     }
 
