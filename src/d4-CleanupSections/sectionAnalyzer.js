@@ -6,13 +6,7 @@ function firstRangeContainsSecond(firstRange, secondRange) {
 }
 exports.firstRangeContainsSecond = firstRangeContainsSecond;
 function anyOverlap(firstRange, secondRange) {
-    if (isValueInRange(firstRange[0], secondRange) ||
-        isValueInRange(firstRange[1], secondRange) ||
-        isValueInRange(secondRange[0], firstRange) ||
-        isValueInRange(secondRange[1], firstRange)) {
-        return true;
-    }
-    return false;
+    return (firstRange[0] <= secondRange[1] && secondRange[0] <= firstRange[1]);
 }
 exports.anyOverlap = anyOverlap;
 function isValueInRange(value, range) {
