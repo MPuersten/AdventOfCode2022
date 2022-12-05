@@ -24,6 +24,17 @@ export default class Instruction {
     }
 
     public enact(stacks: string[][]): string[][] {
-        return [];
+        console.log(stacks);
+        console.log(this._containersToMove);
+        console.log(this._from);
+        console.log(this._to);
+        for (let i = 0; i < this._containersToMove; i++) {
+            let container = stacks[this._from - 1].pop();
+
+            if (container != undefined) stacks[this._to - 1].push(container);
+            else throw Error("Bad contianer push/pop");
+        }
+
+        return stacks;
     }
 }

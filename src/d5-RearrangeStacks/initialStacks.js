@@ -1,4 +1,7 @@
-export const STACKS: string[][] = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.STACKS = void 0;
+exports.STACKS = [
     ['H', 'B', 'V', 'W', 'N', 'M', 'L', 'P'],
     ['M', 'Q', 'H'],
     ['N', 'D', 'B', 'G', 'F', 'Q', 'M', 'L'],
@@ -8,4 +11,4 @@ export const STACKS: string[][] = [
     ['M', 'N', 'B', 'F', 'V', 'R'],
     ['P', 'L', 'H', 'M', 'R', 'G', 'S'],
     ['P', 'D', 'B', 'C', 'N']
-]
+];
