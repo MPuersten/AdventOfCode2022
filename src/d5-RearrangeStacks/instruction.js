@@ -29,16 +29,26 @@ var Instruction = /** @class */ (function () {
         configurable: true
     });
     Instruction.prototype.enact = function (stacks) {
-        console.log(stacks);
-        console.log(this._containersToMove);
-        console.log(this._from);
-        console.log(this._to);
         for (var i = 0; i < this._containersToMove; i++) {
             var container = stacks[this._from - 1].pop();
             if (container != undefined)
                 stacks[this._to - 1].push(container);
             else
                 throw Error("Bad contianer push/pop");
+        }
+        return stacks;
+    };
+    Instruction.prototype.enact9001 = function (stacks) {
+        var pivotContainer = [];
+        for (var i = 0; i < this._containersToMove; i++) {
+            var container = stacks[this._from - 1].pop();
+            if (container != undefined)
+                pivotContainer.push(container);
+            else
+                throw Error("Bad contianer push/pop");
+        }
+        for (var i = pivotContainer.length - 1; i >= 0; i--) {
+            stacks[this._to - 1].push(pivotContainer[i]);
         }
         return stacks;
     };

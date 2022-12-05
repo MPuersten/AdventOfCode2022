@@ -33,4 +33,21 @@ export default class Instruction {
 
         return stacks;
     }
+
+    public enact9001(stacks: string[][]): string[][] {
+        let pivotContainer: string[] = [];
+        
+        for (let i = 0; i < this._containersToMove; i++) {
+            let container = stacks[this._from - 1].pop();
+
+            if (container != undefined) pivotContainer.push(container);
+            else throw Error("Bad contianer push/pop");
+        }
+
+        for (let i = pivotContainer.length - 1; i >= 0; i--) {
+            stacks[this._to - 1].push(pivotContainer[i]);
+        }
+
+        return stacks;
+    }
 }
