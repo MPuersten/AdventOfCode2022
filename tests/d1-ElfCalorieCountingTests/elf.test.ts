@@ -1,5 +1,5 @@
-import Elf from '../src/elf';
-import SnackContainer from '../src/interfaces/snackContainer'
+import Elf from '../../src/d1-ElfCalorieCounting/elf';
+import SnackContainer from '../../src/d1-ElfCalorieCounting/interfaces/snackContainer'
 
 describe('Elf tests', () => {
     test('Elf can provide calorie count from injected snacks.', ()=> {

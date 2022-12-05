@@ -1,8 +1,8 @@
 import * as fs from 'fs'
-import Elf from '../src/elf';
-import ElfCollection from '../src/elfCollection';
-import SnackContainer from '../src/interfaces/SnackContainer';
-import SnackLedgerInterpreter from '../src/snackLedgerInterpreter'
+import Elf from '../../src/d1-ElfCalorieCounting/elf';
+import ElfCollection from '../../src/d1-ElfCalorieCounting/elfCollection';
+import SnackContainer from '../../src/d1-ElfCalorieCounting/interfaces/SnackContainer';
+import SnackLedgerInterpreter from '../../src/d1-ElfCalorieCounting/snackLedgerInterpreter'
 
 describe('Elf collection tests', () => {
     let _elfCollection: ElfCollection;

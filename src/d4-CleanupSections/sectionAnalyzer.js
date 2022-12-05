@@ -6,17 +6,15 @@ function firstRangeContainsSecond(firstRange, secondRange) {
 }
 exports.firstRangeContainsSecond = firstRangeContainsSecond;
 function anyOverlap(firstRange, secondRange) {
-    if (valueInRange(firstRange[0], secondRange))
+    if (isValueInRange(firstRange[0], secondRange) ||
+        isValueInRange(firstRange[1], secondRange) ||
+        isValueInRange(secondRange[0], firstRange) ||
+        isValueInRange(secondRange[1], firstRange)) {
         return true;
-    if (valueInRange(firstRange[1], secondRange))
-        return true;
-    if (valueInRange(secondRange[0], firstRange))
-        return true;
-    if (valueInRange(secondRange[1], firstRange))
-        return true;
+    }
     return false;
 }
 exports.anyOverlap = anyOverlap;
-function valueInRange(value, range) {
+function isValueInRange(value, range) {
     return (value >= range[0] && value <= range[1]);
 }

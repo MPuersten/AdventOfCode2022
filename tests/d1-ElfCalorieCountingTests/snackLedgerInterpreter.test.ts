@@ -1,4 +1,4 @@
-import SnackLedgerInterpreter from "../src/snackLedgerInterpreter";
+import SnackLedgerInterpreter from "../../src/d1-ElfCalorieCounting/snackLedgerInterpreter";
 
 describe('Snack Ledger Interpreter', () => {
     test('Correct calorie list returned', ()=> {

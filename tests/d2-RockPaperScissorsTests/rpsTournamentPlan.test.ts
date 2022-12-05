@@ -1,6 +1,5 @@
 import * as fs from 'fs'
-import RpsStrategyGame from "../src/D2-RockPaperScissors/rpsStrategyGame";
-import RpsTrounamentPlan from '../src/D2-RockPaperScissors/rpsTournamentPlan';
+import RpsTrounamentPlan from '../../src/d2-RockPaperScissors/rpsTournamentPlan';
 
 describe('Rock Paper Scissors Tournament', () => {
     test('Get Strategy Score', ()=> {
