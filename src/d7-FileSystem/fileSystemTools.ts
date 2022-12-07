@@ -7,7 +7,7 @@ export function GetDirectoriesWithMaxSize(maxSize: number, directory: Directory)
         directoriesUnder = directoriesUnder.concat(GetDirectoriesWithMaxSize(maxSize, directory.ChildDirectories[i]));
     }
 
-    if (directory.getSumUnder() < maxSize) {
+    if (directory.getSumUnder() <= maxSize) {
         directoriesUnder.push(directory);
     }
 
@@ -21,7 +21,7 @@ export function GetDirectoriesWithMinSize(minSize: number, directory: Directory)
         directoriesOver = directoriesOver.concat(GetDirectoriesWithMinSize(minSize, directory.ChildDirectories[i]));
     }
 
-    if (directory.getSumUnder() > minSize) {
+    if (directory.getSumUnder() >= minSize) {
         directoriesOver.push(directory);
     }
 

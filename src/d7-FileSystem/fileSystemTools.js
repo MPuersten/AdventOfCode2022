@@ -6,7 +6,7 @@ function GetDirectoriesWithMaxSize(maxSize, directory) {
     for (var i = 0; i < directory.ChildDirectories.length; i++) {
         directoriesUnder = directoriesUnder.concat(GetDirectoriesWithMaxSize(maxSize, directory.ChildDirectories[i]));
     }
-    if (directory.getSumUnder() < maxSize) {
+    if (directory.getSumUnder() <= maxSize) {
         directoriesUnder.push(directory);
     }
     return directoriesUnder;
@@ -17,7 +17,7 @@ function GetDirectoriesWithMinSize(minSize, directory) {
     for (var i = 0; i < directory.ChildDirectories.length; i++) {
         directoriesOver = directoriesOver.concat(GetDirectoriesWithMinSize(minSize, directory.ChildDirectories[i]));
     }
-    if (directory.getSumUnder() > minSize) {
+    if (directory.getSumUnder() >= minSize) {
         directoriesOver.push(directory);
     }
     return directoriesOver;
