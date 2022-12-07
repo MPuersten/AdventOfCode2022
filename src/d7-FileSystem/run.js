@@ -3,37 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var directory_1 = require("./directory");
 var puzzleFile_1 = require("./puzzleFile");
+var fileSystemTools_1 = require("./fileSystemTools");
 var instructions = (fs.readFileSync('./assets/d7-input.txt', 'utf-8')).split(/\r?\n/);
 var directories = [];
 var currentDirectory = new directory_1.default('/');
 var topDirectory = currentDirectory;
 directories.push(currentDirectory);
-var directoriesUnder = [];
-function GetDirectoriesWithSizeUnder(sizeUnder, directory) {
-    // console.log("Called for " + directory.Name);
-    for (var i = 0; i < directory.ChildDirectories.length; i++) {
-        GetDirectoriesWithSizeUnder(sizeUnder, directory.ChildDirectories[i]);
-    }
-    var directorySize = directory.getSumUnder();
-    // console.log("Sum under " + directory.Name + " is " + directorySize);
-    if (directorySize < sizeUnder) {
-        // console.log("Pushing " + directory.Name);
-        directoriesUnder.push(directory);
-    }
-}
-var directoriesOver = [];
-function GetDirectoriesWithSizeOver(sizeUnder, directory) {
-    // console.log("Called for " + directory.Name);
-    for (var i = 0; i < directory.ChildDirectories.length; i++) {
-        GetDirectoriesWithSizeOver(sizeUnder, directory.ChildDirectories[i]);
-    }
-    var directorySize = directory.getSumUnder();
-    // console.log("Sum under " + directory.Name + " is " + directorySize);
-    if (directorySize > sizeUnder) {
-        // console.log("Pushing " + directory.Name);
-        directoriesOver.push(directory);
-    }
-}
 for (var i = 0; i < instructions.length; i++) {
     var instruction = instructions[i].split(' ');
     // Command
@@ -71,8 +46,7 @@ for (var i = 0; i < instructions.length; i++) {
     }
 }
 // Question 1
-GetDirectoriesWithSizeUnder(100000, topDirectory);
-console.log("Num fitting folders: " + directoriesUnder.length);
+var directoriesUnder = (0, fileSystemTools_1.GetDirectoriesWithMaxSize)(100000, topDirectory);
 var underSum = 0;
 for (var i = 0; i < directoriesUnder.length; i++) {
     underSum += directoriesUnder[i].getSumUnder();
@@ -83,7 +57,7 @@ var usedSpace = topDirectory.getSumUnder();
 console.log("Used Space: " + usedSpace);
 var minSpaceToFreeUp = usedSpace - 40000000;
 console.log("Space to free: " + minSpaceToFreeUp);
-GetDirectoriesWithSizeOver(minSpaceToFreeUp, topDirectory);
+var directoriesOver = (0, fileSystemTools_1.GetDirectoriesWithMinSize)(minSpaceToFreeUp, topDirectory);
 var smallestDirectorySize = 70000000;
 for (var i = 0; i < directoriesOver.length; i++) {
     var directorySize = directoriesOver[i].getSumUnder();
