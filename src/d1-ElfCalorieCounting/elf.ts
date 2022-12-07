@@ -1,4 +1,4 @@
-import SnackContainer from "./interfaces/SnackContainer";
+import SnackContainer from "./interfaces/snackContainer";
 
 export default class Elf implements SnackContainer {
     private _calorieCount: number = 0;

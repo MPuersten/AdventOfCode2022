@@ -1,6 +1,6 @@
 export default class BisectingRucksack {
-    private _repeatedCharacter;
-    private _rucksackContents;
+    private _repeatedCharacter?: string;
+    private _rucksackContents: string;
     
     constructor(items: string){
         this._rucksackContents = items;
@@ -18,7 +18,9 @@ export default class BisectingRucksack {
     }
 
     public get repeatedCharacter(): string {
-        return this._repeatedCharacter;
+        if (this._repeatedCharacter !== undefined)
+            return this._repeatedCharacter;
+        else throw Error("Bad content in rucksack, no repeated character.");
     }
 
     public get rucksackContents(): string {

@@ -4,7 +4,7 @@ export default class Directory {
     Name: string;
 
     ChildDirectories: Directory[] = [];
-    ParentDirectory: Directory;
+    ParentDirectory?: Directory;
     Files: PuzzleFile[] = [];
     
     constructor(name: string) {

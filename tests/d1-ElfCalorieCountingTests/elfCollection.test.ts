@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import Elf from '../../src/d1-ElfCalorieCounting/elf';
 import ElfCollection from '../../src/d1-ElfCalorieCounting/elfCollection';
-import SnackContainer from '../../src/d1-ElfCalorieCounting/interfaces/SnackContainer';
+import SnackContainer from '../../src/d1-ElfCalorieCounting/interfaces/snackContainer';
 import SnackLedgerInterpreter from '../../src/d1-ElfCalorieCounting/snackLedgerInterpreter'
 
 describe('Elf collection tests', () => {

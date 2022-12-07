@@ -1,3 +1,3 @@
 export default interface SnackContainer {
-    get calorieCount();
+    get calorieCount(): number;
 }

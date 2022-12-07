@@ -1,10 +1,10 @@
 import * as fs from 'fs'
 import Elf from './elf';
 import ElfCollection from './elfCollection';
-import SnackContainer from './interfaces/SnackContainer';
+import SnackContainer from './interfaces/snackContainer';
 import SnackLedgerInterpreter from './snackLedgerInterpreter'
 
-let snackLedger: string = fs.readFileSync('../assets/d1-input.txt', 'utf-8');
+let snackLedger: string = fs.readFileSync('./assets/d1-input.txt', 'utf-8');
 
 let interpreter: SnackLedgerInterpreter = new SnackLedgerInterpreter();
 let snackLists: number[][] = interpreter.getCalorieLists(snackLedger);

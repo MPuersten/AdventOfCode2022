@@ -22,7 +22,8 @@ for (let i = 0; i < instructions.length; i++) {
         if (instruction[1] === 'cd') {
             // previous directory
             if (instruction[2] === '..') {
-                currentDirectory = currentDirectory.ParentDirectory;
+                if (currentDirectory.ParentDirectory !== undefined)
+                    currentDirectory = currentDirectory.ParentDirectory;
             }
             // directory name
             else {
