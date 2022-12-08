@@ -40,3 +40,61 @@ export function areSurroundingElementsEvenOrLarger(grid: number[][], row: number
     return (coveredAbove && coveredBelow && coveredLeft && coveredRight);
 }
 
+export function getScenicScore(grid: number[][], row: number, col: number): number {
+    let value: number = grid[row][col];
+
+    // Above
+    let aboveDistance: number = 0;
+    for (let i = row - 1; i >= 0; i--) {
+        if (grid[i][col] >= value) {
+            aboveDistance++;
+            break;
+        }
+        else {
+            aboveDistance++;
+        }
+    }
+
+    // Below
+    let belowDistance: number = 0;
+    for (let i = row + 1; i < grid.length; i++) {
+        if (grid[i][col] >= value) {
+            belowDistance++;
+            break;
+        }
+        else {
+            belowDistance++;
+        }
+    }
+
+    // Left
+    let leftDistance: number = 0;
+    for (let i = col - 1; i >= 0; i--) {
+        if (grid[row][i] >= value) {
+            leftDistance++;
+            break;
+        }
+        else {
+            leftDistance++;
+        }
+    }
+
+    // Right
+    let rightDistance: number = 0;
+    for (let i = col + 1; i < grid[0].length; i++) {
+        if (grid[row][i] >= value) {
+            rightDistance++;
+            break;
+        }
+        else {
+            rightDistance++;
+        }
+    }
+
+    console.log(`aboveDistance: ${aboveDistance}`);
+    console.log(`belowDistance: ${belowDistance}`);
+    console.log(`leftDistance: ${leftDistance}`);
+    console.log(`rightDistance: ${rightDistance}`);
+
+    return (aboveDistance * belowDistance * leftDistance * rightDistance);
+}

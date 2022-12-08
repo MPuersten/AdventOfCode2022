@@ -1,4 +1,4 @@
-import { areSurroundingElementsEvenOrLarger } from "../../src/d8-TreeHouse/2dArrayUtilities";
+import { areSurroundingElementsEvenOrLarger, getScenicScore } from "../../src/d8-TreeHouse/2dArrayUtilities";
 
 describe('2D Array Utilities', () => {
     let grid: number[][] = [
@@ -51,5 +51,21 @@ describe('2D Array Utilities', () => {
         let largerSurrounding: boolean = areSurroundingElementsEvenOrLarger(grid, 3, 3);
 
         expect(largerSurrounding).toEqual(expectedLargerSurrounding);
+    })
+
+    test('Scenic score, inside covered 1', ()=> {
+        let expectedScore: number = 4;
+
+        let scenicScore: number = getScenicScore(grid, 1, 2);
+
+        expect(scenicScore).toEqual(expectedScore);
+    })
+
+    test('Scenic score, inside covered 2', ()=> {
+        let expectedScore: number = 8;
+
+        let scenicScore: number = getScenicScore(grid, 3, 2);
+
+        expect(scenicScore).toEqual(expectedScore);
     })
 })
