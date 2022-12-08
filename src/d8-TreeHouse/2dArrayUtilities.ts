@@ -91,10 +91,5 @@ export function getScenicScore(grid: number[][], row: number, col: number): numb
         }
     }
 
-    console.log(`aboveDistance: ${aboveDistance}`);
-    console.log(`belowDistance: ${belowDistance}`);
-    console.log(`leftDistance: ${leftDistance}`);
-    console.log(`rightDistance: ${rightDistance}`);
-
     return (aboveDistance * belowDistance * leftDistance * rightDistance);
 }
