@@ -1,10 +1,10 @@
 import * as fs from 'fs'
 
 let treeRows: string[] = (fs.readFileSync('./assets/d8-input.txt', 'utf-8')).split(/\r?\n/);
-let treeGrid: string[][] = [];
+let treeGrid: number[][] = [];
 
 for (let i = 0; i < treeRows.length; i++) {
-    treeGrid.push(treeRows[i].split(""));
+    treeGrid.push(treeRows[i].split("").map(element => parseInt(element)));
 }
 
 console.log(treeGrid);
@@ -19,6 +19,8 @@ visibleTreeCount += (treeRows[0].length - 2) * 2;
 // Get inner count
 for (let i = 1; i < treeRows.length - 1; i++) {
     for (let j = 1; j < treeRows[0].length - 1; j++) {
-        // if (areSurroundingElementsLarger)
+        // if (areSurroundingElementsLarger(treeGrid, i, j)) visibleTreeCount++;
     }
 }
+
+console.log(`Visible tree count: ${treeGrid}`);
