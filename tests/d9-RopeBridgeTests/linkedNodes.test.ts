@@ -1,14 +1,14 @@
 import * as fs from 'fs'
-import LinkedGrids from "../../src/d9-RopeBridge/linkedGrids";
+import LinkedNodes from "../../src/d9-RopeBridge/linkedNodes";
 
 describe('Linked Grid', () => {
     test('Tail positions starts at 1', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
         expect(grid.numUniqueTailPositions).toEqual(1);
     })
 
     test('Tail position 0,0 after 1 head movement', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 1);
 
@@ -19,7 +19,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail position 1,0 after 2 head movement', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 2);
 
@@ -30,7 +30,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail position diagonal still after multiple head movements', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 2);
         grid.performMovement('U', 1);
@@ -42,7 +42,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail position correct after multiple head movements', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 2);
         grid.performMovement('U', 3);
@@ -54,7 +54,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail no move on overlap', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 1);
         grid.performMovement('L', 2);
@@ -66,7 +66,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail positions after multiple head movements', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 2);
         grid.performMovement('U', 1);
@@ -75,7 +75,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail positions after multiple head movements, more', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 2);
         grid.performMovement('U', 3);
@@ -84,7 +84,7 @@ describe('Linked Grid', () => {
     })
 
     test('Tail no positions on overlap', ()=> {
-        let grid: LinkedGrids = new LinkedGrids(2);
+        let grid: LinkedNodes = new LinkedNodes(2);
 
         grid.performMovement('R', 1);
         grid.performMovement('L', 2);
@@ -97,7 +97,7 @@ describe('Linked Grid', () => {
         let instructionText: string[] = (fs.readFileSync('./assets/d9-input.txt', 'utf-8')).split(/\r?\n/);
         let instructions: string[][] = instructionText.map(instruction => instruction.split(' '));
         
-        let grid: LinkedGrids = new LinkedGrids(10);
+        let grid: LinkedNodes = new LinkedNodes(10);
 
         for (let i = 0; i < instructions.length; i++) {
             grid.performMovement(instructions[i][0], parseInt(instructions[i][1]));
