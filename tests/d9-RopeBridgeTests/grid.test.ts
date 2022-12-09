@@ -1,9 +1,9 @@
 import Grid from '../../src/d9-RopeBridge/grid';
 
 describe('Grid', () => {
-    test('Tail positions starts at 0', ()=> {
+    test('Tail positions starts at 1', ()=> {
         let grid: Grid = new Grid();
-        expect(grid.numUniqueTailPositions).toEqual(0);
+        expect(grid.numUniqueTailPositions).toEqual(1);
     })
 
     test('Tail position 0,0 after 1 head movement', ()=> {
@@ -70,7 +70,7 @@ describe('Grid', () => {
         grid.performMovement('R', 2);
         grid.performMovement('U', 1);
 
-        expect(grid.numUniqueTailPositions).toEqual(1);
+        expect(grid.numUniqueTailPositions).toEqual(2);
     })
 
     test('Tail positions after multiple head movements, more', ()=> {
@@ -79,7 +79,7 @@ describe('Grid', () => {
         grid.performMovement('R', 2);
         grid.performMovement('U', 3);
 
-        expect(grid.numUniqueTailPositions).toEqual(3);
+        expect(grid.numUniqueTailPositions).toEqual(4);
     })
 
     test('Tail no positions on overlap', ()=> {
@@ -88,6 +88,6 @@ describe('Grid', () => {
         grid.performMovement('R', 1);
         grid.performMovement('L', 2);
 
-        expect(grid.numUniqueTailPositions).toEqual(0);
+        expect(grid.numUniqueTailPositions).toEqual(1);
     })
 })
