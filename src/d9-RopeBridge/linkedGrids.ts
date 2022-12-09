@@ -1,13 +1,17 @@
-
 import Position from "./position";
 
 export default class LinkedGrids {
-    XPositions: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    YPositions: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+    private _nodeCount: number;
     private tailPositions: Position[] = [];
+
+    Positions: Position[] = [];
     
-    constructor() {
+    public constructor(numberOfNodes: number) {
+        this._nodeCount = numberOfNodes;
+        for (let i = 0; i < numberOfNodes; i++) {
+            this.Positions.push(new Position(0, 0))
+        }
+
         this.tailPositions.push(new Position(0, 0));
     }
 
@@ -18,25 +22,25 @@ export default class LinkedGrids {
     performMovement(direction: string, distance: number): void {
         if (direction === 'U') {
             for (let i = 0; i < distance; i++) {
-                this.YPositions[0]++;
+                this.Positions[0].Y++;
                 this.moveTail();
             }
         }
         else if (direction === 'D') {
             for (let i = 0; i < distance; i++) {
-                this.YPositions[0]--;
+                this.Positions[0].Y--;
                 this.moveTail();
             }
         }
         else if (direction === 'R') {
             for (let i = 0; i < distance; i++) {
-                this.XPositions[0]++;
+                this.Positions[0].X++;
                 this.moveTail();
             }
         }
         else if (direction === 'L') {
             for (let i = 0; i < distance; i++) {
-                this.XPositions[0]--;
+                this.Positions[0].X--;
                 this.moveTail();
             }
         }
@@ -46,13 +50,10 @@ export default class LinkedGrids {
     }
 
     private moveTail() {
-        for (let i = 0; i < this.XPositions.length - 1; i++) {
-            let head: Position = new Position(this.XPositions[i], this.YPositions[i]);
-            let tail: Position = new Position(this.XPositions[i + 1], this.YPositions[i + 1]);
-
-            let newTailPosition = this.moveSegment(head, tail);
-            this.XPositions[i + 1] = newTailPosition.X;
-            this.YPositions[i + 1] = newTailPosition.Y;
+        for (let i = 0; i < this.Positions.length - 1; i++) {
+            let newTailPosition = this.moveSegment(this.Positions[i], this.Positions[i + 1]);
+            this.Positions[i + 1].X = newTailPosition.X;
+            this.Positions[i + 1].Y = newTailPosition.Y;
 
             this.tryUpdateTailPositions();
         }
@@ -93,15 +94,15 @@ export default class LinkedGrids {
     private tryUpdateTailPositions() {
         let newPosition: boolean = true;
         for (let i = 0; i < this.tailPositions.length; i++) {
-            if (this.XPositions[this.XPositions.length - 1] === this.tailPositions[i].X && 
-                this.YPositions[this.YPositions.length - 1] === this.tailPositions[i].Y) {
+            if (this.Positions[this._nodeCount - 1].X === this.tailPositions[i].X && 
+                this.Positions[this._nodeCount - 1].Y === this.tailPositions[i].Y) {
                     newPosition = false;
                     break;
                 }
         }
 
         if (newPosition) this.tailPositions.push(new Position(
-            this.XPositions[this.XPositions.length - 1], 
-            this.YPositions[this.YPositions.length - 1]));
+            this.Positions[this._nodeCount - 1].X, 
+            this.Positions[this._nodeCount - 1].Y));
     }
 }
