@@ -1,6 +1,7 @@
 
 export default class Monkey {    
     private _itemHeld?: number;
+    private _numInspections: number = 0;
     
     constructor(
         private _id: number,
@@ -11,17 +12,30 @@ export default class Monkey {
         private _falseMonkey: number
     ) {}
 
+    get itemCount(): number {
+        return this._items.length;
+    }
+
     inspectNext(): void {
         if (this._items.length > 0) {
             this._itemHeld = this._items.shift();
-            let old: number | undefined = this._itemHeld;
             
-
-            console.log(eval(this._operation));
+            let fullOperation = String(this._itemHeld) + this._operation;
+            this._itemHeld = eval(fullOperation);
+            this._numInspections++;
         }
     }
 
-    throwItem(): number {
-        return 0;
+    giveItem(item: number): void {
+        this._items.push(item);
+    }
+
+    throwItem(): number[] {
+        if (this._itemHeld! % this._divisibleBy !== 0){
+            return [this._trueMonkey, this._itemHeld!];
+        }
+        else {
+            return [this._falseMonkey, this._itemHeld!];
+        }
     }
 }
