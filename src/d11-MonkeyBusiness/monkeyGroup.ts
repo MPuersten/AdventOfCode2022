@@ -53,7 +53,7 @@ export default class MonkeyGroup {
                     this._monkeys[j].inspectNext(anxietyDivider);
                     let thrown: number[] = this._monkeys[j].throwItem();
 
-                    while (thrown[1] > this._lcmDivisibles) thrown[1] = thrown[1] - this._lcmDivisibles;
+                    thrown[1] %= this._lcmDivisibles;
 
                     this._monkeys[thrown[0]].giveItem(thrown[1]);
                 }
