@@ -39,33 +39,56 @@ export default class Heightmap {
     }
 
     findShortestPathToGoal(): number {
-        let queue: ValuePosition[] = [];
-        let visited: Position[] = [];
+        let validNeighborQueue: ValuePosition[] = [];
+        let visitedPoints: Position[] = [];
 
-        queue.push(new ValuePosition(this._startPosition.X, this._startPosition.Y, 0));
-        visited.push(new Position(this._startPosition.X, this._startPosition.Y));
-        // console.log(`QUEUE Init: ${queue.length}, ${queue[0].X}, ${queue[0].Y}, ${queue[0].Value}`);
+        validNeighborQueue.push(new ValuePosition(this._startPosition.X, this._startPosition.Y, 0));
+        visitedPoints.push(new Position(this._startPosition.X, this._startPosition.Y));
             
-        while (queue.length > 0) {
-            // console.log('WHILE');
-            let itemWithDistance: ValuePosition = queue.shift()!;
+        while (validNeighborQueue.length > 0) {
+            let itemWithDistance: ValuePosition = validNeighborQueue.shift()!;
             if (this.isSamePosition(itemWithDistance as Position, this._endPosition)) {
-                    this.printMapOfPointsListed(visited);
+                    this.printMapOfPointsListed(visitedPoints);
                     return itemWithDistance.Value;
             }
 
             let neighbors: Position[] = this.getValidNeighbors(itemWithDistance);
             for (let i = 0; i < neighbors.length; i++) {
-                if (!this.isItemInList(visited, neighbors[i])) {
-                    queue.push(new ValuePosition(neighbors[i].X, neighbors[i].Y, itemWithDistance.Value + 1));
-                    visited.push(new Position(neighbors[i].X, neighbors[i].Y));
+                if (!this.isItemInList(visitedPoints, neighbors[i])) {
+                    validNeighborQueue.push(new ValuePosition(neighbors[i].X, neighbors[i].Y, itemWithDistance.Value + 1));
+                    visitedPoints.push(new Position(neighbors[i].X, neighbors[i].Y));
                 }
             }
-
-            // console.log(queue);
         }
         
-        this.printMapOfPointsListed(visited);
+        this.printMapOfPointsListed(visitedPoints);
+        throw Error('No Path Found');
+    }
+
+    findShortestPathFromGoalToLowestLevel(): number {
+        let validNeighborQueue: ValuePosition[] = [];
+        let visitedPoints: Position[] = [];
+
+        validNeighborQueue.push(new ValuePosition(this._endPosition.X, this._endPosition.Y, 0));
+        visitedPoints.push(new Position(this._endPosition.X, this._endPosition.Y));
+            
+        while (validNeighborQueue.length > 0) {
+            let itemWithDistance: ValuePosition = validNeighborQueue.shift()!;
+            if (this._letters[itemWithDistance.X][itemWithDistance.Y] === 'a') {
+                    //this.printMapOfPointsListed(visitedPoints);
+                    return itemWithDistance.Value;
+            }
+
+            let neighbors: Position[] = this.getValidNeighborsDownward(itemWithDistance);
+            for (let i = 0; i < neighbors.length; i++) {
+                if (!this.isItemInList(visitedPoints, neighbors[i])) {
+                    validNeighborQueue.push(new ValuePosition(neighbors[i].X, neighbors[i].Y, itemWithDistance.Value + 1));
+                    visitedPoints.push(new Position(neighbors[i].X, neighbors[i].Y));
+                }
+            }
+        }
+        
+        this.printMapOfPointsListed(visitedPoints);
         throw Error('No Path Found');
     }
 
@@ -107,38 +130,64 @@ export default class Heightmap {
     private getValidNeighbors(pos: Position): Position[] {
         let positions: Position[] = [];
         
-        if (pos.X > 0) {
-            if (
-                (this._heights[pos.X][pos.Y]) - this._heights[pos.X - 1][pos.Y] >= -1
-            ) {
-                positions.push(new Position(pos.X - 1, pos.Y));
+        const neighbors = [
+          new Position(pos.X - 1, pos.Y),
+          new Position(pos.X + 1, pos.Y),
+          new Position(pos.X, pos.Y - 1),
+          new Position(pos.X, pos.Y + 1)
+        ];
+      
+        for (const neighbor of neighbors) {
+            if (this.isValidNeighbor(pos, neighbor)) {
+            positions.push(neighbor);
             }
         }
-
-        if (pos.X < this._heights.length - 1) {
-            if (
-                (this._heights[pos.X][pos.Y]) - this._heights[pos.X + 1][pos.Y] >= -1
-            ) {
-                positions.push(new Position(pos.X + 1, pos.Y));
-            }
-        }
-
-        if (pos.Y > 0) {
-            if (
-                (this._heights[pos.X][pos.Y]) - this._heights[pos.X][pos.Y - 1] >= -1
-            ) {
-                positions.push(new Position(pos.X, pos.Y - 1));
-            }
-        }
-
-        if (pos.Y < this._heights[0].length - 1) {
-            if (
-                (this._heights[pos.X][pos.Y]) - this._heights[pos.X][pos.Y + 1] >= -1
-            ) {
-                positions.push(new Position(pos.X, pos.Y + 1));
-            }
-        }
-
+      
         return positions;
+    }
+
+    private isValidNeighbor(pos: Position, neighbor: Position): boolean {
+        // edge protection
+        if (neighbor.X < 0 || 
+            neighbor.X >= this._heights.length || 
+            neighbor.Y < 0 || 
+            neighbor.Y >= this._heights[0].length) {
+            return false;
+        }
+        
+        // can jump down, but only climb by 1
+        return (this._heights[pos.X][pos.Y] - this._heights[neighbor.X][neighbor.Y] >= -1);
+    }
+      
+    private getValidNeighborsDownward(pos: Position): Position[] {
+        let positions: Position[] = [];
+        
+        const neighbors = [
+          new Position(pos.X - 1, pos.Y),
+          new Position(pos.X + 1, pos.Y),
+          new Position(pos.X, pos.Y - 1),
+          new Position(pos.X, pos.Y + 1)
+        ];
+      
+        for (const neighbor of neighbors) {
+            if (this.isValidNeighborDownward(pos, neighbor)) {
+            positions.push(neighbor);
+            }
+        }
+      
+        return positions;
+    }
+
+    private isValidNeighborDownward(pos: Position, neighbor: Position): boolean {
+        // edge protection
+        if (neighbor.X < 0 || 
+            neighbor.X >= this._heights.length || 
+            neighbor.Y < 0 || 
+            neighbor.Y >= this._heights[0].length) {
+            return false;
+        }
+        
+        // can climb up, but only jump down 1
+        return (this._heights[pos.X][pos.Y] - this._heights[neighbor.X][neighbor.Y] <= 1);
     }
 }

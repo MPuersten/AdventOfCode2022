@@ -9,3 +9,7 @@ heightmap.printGridWithPositions();
 let shortestPath: number = heightmap.findShortestPathToGoal();
 
 console.log(`Shortest path: ${shortestPath}`);
+
+let shortestPathDown: number = heightmap.findShortestPathFromGoalToLowestLevel();
+
+console.log(`Shortest path from top to lowest level: ${shortestPathDown}`);
