@@ -44,8 +44,7 @@ export default class Monkey {
                     break;
             }
 
-            if (anxietyDivider !== 1)
-                this._itemHeld = Math.floor(this._itemHeld! / anxietyDivider);
+            if (anxietyDivider !== 1) this._itemHeld = Math.floor(this._itemHeld! / anxietyDivider);
 
             this._numInspections++;
         }
