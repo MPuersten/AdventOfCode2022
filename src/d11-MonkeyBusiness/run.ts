@@ -1,7 +1,6 @@
 import * as fs from 'fs'
 import MonkeyGroup from './monkeyGroup';
 
-//let monkeyText: string[] = (fs.readFileSync('./assets/d11-input.txt', 'utf-8')).split(/\r?\n/);
 let monkeyText: string[] = (fs.readFileSync('./assets/d11-input.txt', 'utf-8')).split(/\r?\n/);
 let inspectionCounts: number[] = [];
 let monkeys: MonkeyGroup;
