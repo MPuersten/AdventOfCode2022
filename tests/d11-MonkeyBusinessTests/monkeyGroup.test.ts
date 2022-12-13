@@ -18,8 +18,6 @@ describe('Monkey Group', () => {
         let inspectionCounts: number[] = monkeys.getInspectionCounts();
         inspectionCounts.sort((a, b) => b - a);
 
-        console.log(inspectionCounts);
-
         for (let i = 0; i < expectedCounts.length; i++) {
             expect(inspectionCounts[i]).toEqual(expectedCounts[i]);
         }
@@ -33,8 +31,6 @@ describe('Monkey Group', () => {
         let inspectionCounts: number[] = monkeys.getInspectionCounts();
         inspectionCounts.sort((a, b) => b - a);
 
-        console.log(inspectionCounts);
-
         for (let i = 0; i < expectedCounts.length; i++) {
             expect(inspectionCounts[i]).toEqual(expectedCounts[i]);
         }
@@ -47,8 +43,6 @@ describe('Monkey Group', () => {
 
         let inspectionCounts: number[] = monkeys.getInspectionCounts();
         inspectionCounts.sort((a, b) => b - a);
-
-        console.log(inspectionCounts);
 
         for (let i = 0; i < expectedCounts.length; i++) {
             expect(inspectionCounts[i]).toEqual(expectedCounts[i]);

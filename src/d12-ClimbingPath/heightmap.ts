@@ -48,7 +48,7 @@ export default class Heightmap {
         while (validNeighborQueue.length > 0) {
             let itemWithDistance: ValuePosition = validNeighborQueue.shift()!;
             if (this.isSamePosition(itemWithDistance as Position, this._endPosition)) {
-                    this.printMapOfPointsListed(visitedPoints);
+                    //this.printMapOfPointsListed(visitedPoints);
                     return itemWithDistance.Value;
             }
 
