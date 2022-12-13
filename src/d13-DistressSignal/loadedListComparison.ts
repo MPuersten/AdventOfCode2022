@@ -1,3 +1,3 @@
-export function compareLoadedLists(left: any, right: any) {
-
+export function isRightGreaterThanLeft(left: any, right: any): boolean {
+    throw Error();
 }
