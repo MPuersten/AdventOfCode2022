@@ -38,7 +38,7 @@ export default class Heightmap {
         }
     }
 
-    findShortestPathToGoal(): number {
+    findShortestPathToGoal(printGrid?: boolean): number {
         let validNeighborQueue: ValuePosition[] = [];
         let visitedPoints: Position[] = [];
 
@@ -48,8 +48,8 @@ export default class Heightmap {
         while (validNeighborQueue.length > 0) {
             let itemWithDistance: ValuePosition = validNeighborQueue.shift()!;
             if (this.isSamePosition(itemWithDistance as Position, this._endPosition)) {
-                    //this.printMapOfPointsListed(visitedPoints);
-                    return itemWithDistance.Value;
+                if (printGrid) this.printMapOfPointsListed(visitedPoints);
+                return itemWithDistance.Value;
             }
 
             let neighbors: Position[] = this.getValidNeighbors(itemWithDistance);
@@ -65,7 +65,7 @@ export default class Heightmap {
         throw Error('No Path Found');
     }
 
-    findShortestPathFromGoalToLowestLevel(): number {
+    findShortestPathFromGoalToLowestLevel(printGrid?: boolean): number {
         let validNeighborQueue: ValuePosition[] = [];
         let visitedPoints: Position[] = [];
 
@@ -75,8 +75,8 @@ export default class Heightmap {
         while (validNeighborQueue.length > 0) {
             let itemWithDistance: ValuePosition = validNeighborQueue.shift()!;
             if (this._letters[itemWithDistance.X][itemWithDistance.Y] === 'a') {
-                    //this.printMapOfPointsListed(visitedPoints);
-                    return itemWithDistance.Value;
+                if (printGrid) this.printMapOfPointsListed(visitedPoints);
+                return itemWithDistance.Value;
             }
 
             let neighbors: Position[] = this.getValidNeighborsDownward(itemWithDistance);
