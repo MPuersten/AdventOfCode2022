@@ -1,4 +1,4 @@
-import Position from "../d9-RopeBridge/position";
+import Position from "../d09-RopeBridge/position";
 
 export default class ValuePosition extends Position {
     Value: number;

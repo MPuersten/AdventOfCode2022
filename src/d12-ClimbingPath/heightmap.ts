@@ -1,5 +1,5 @@
-import { getCharacterPriority } from "../d3-Rucksack/characterPriorityTranslator";
-import Position from "../d9-RopeBridge/position";
+import { getCharacterPriority } from "../d03-Rucksack/characterPriorityTranslator";
+import Position from "../d09-RopeBridge/position";
 import ValuePosition from "./valuePosition";
 
 export default class Heightmap {
