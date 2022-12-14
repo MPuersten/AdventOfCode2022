@@ -9,10 +9,10 @@ export default class Dimesions2D {
     }
 
     get Width(): number {
-        return this.X2 - this.X1 + 1;
+        return this.X2 - this.X1;
     }
 
     get Height(): number {
-        return this.Y2 - this.Y1 + 1;
+        return this.Y2 - this.Y1;
     }
 }
