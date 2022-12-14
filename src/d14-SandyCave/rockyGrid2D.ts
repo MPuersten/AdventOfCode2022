@@ -8,7 +8,7 @@ export default class RockyGrid2D {
 
     constructor(rockPlacementNodes: Position[][]) {
         this.dimesions = this.getGridDimensions(rockPlacementNodes);
-        // this.buildGrid(rockPlacementNodes);
+        this.buildGrid(rockPlacementNodes);
     }
 
     private getGridDimensions(rockPlacementNodes: Position[][]): Dimesions2D {
@@ -26,18 +26,24 @@ export default class RockyGrid2D {
             })
         })
 
-        console.log(`Grid dimensions X1: ${smallestX1!}, X2: ${largestX2!}, Y1: ${smallestY1}, Y2: ${largestY2!}`);
-
         return new Dimesions2D(smallestX1!, largestX2!, smallestY1, largestY2!);
     }
 
-    // private buildGrid(rockPlacementNodes: Position[][]) {
-    //     let gridTop
-    //     for
-    // }
+    private buildGrid(rockPlacementNodes: Position[][]) {
+        for (let i = this.dimesions.X1; i < this.dimesions.X2 + 1; i++) {
+            let row: string[] = [];
+            for (let j = this.dimesions.Y1; j < this.dimesions.Y2 + 1; j++) {
+                row.push('.')
+            }
 
-    // printGrid() {
-    //     console.log()
-    // }
+            this.grid.push(row);
+        }
+    }
+
+    printGrid() {
+        this.grid.forEach(row => {
+            console.log(row.join(''));
+        })
+    }
 }
 
