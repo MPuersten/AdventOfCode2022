@@ -20,5 +20,5 @@ signalPairText.forEach(line => {
 
 const grid: RockyGrid2D = new RockyGrid2D(rockPositions);
 
-grid.dropSandFromTop(500);
+grid.dropSandUntilItGoesOffGrid(500);
 grid.printGrid();
