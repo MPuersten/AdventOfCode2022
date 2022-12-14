@@ -94,7 +94,9 @@ export default class RockyGrid2D {
     dropSandFromTop(column: number) {
         let sandPosition = this.addSandAtTop(column);
 
-        // start while here
+        while(!isSandAtRest(sandPosition)) {
+            sandFall(sandPosition);
+        }
     }
 
     private addSandAtTop(column: number) {
@@ -108,9 +110,22 @@ export default class RockyGrid2D {
         const gridX = position.Y;
         const gridY = position.X - this.dimesions.X1;
 
-        // console.log(`Placing rock at ${gridX}, ${gridY} (${position.X}, ${position.Y})`);
-
         this.grid[gridX][gridY] = symbol;
+    }
+
+    private isSandAtRest(position: Position) {
+
+    }
+
+    private sandFall(position: Position) {
+        if(this.getContent(position) === )
+    }
+
+    private getContent(position: Position): string {
+        const gridX = position.Y;
+        const gridY = position.X - this.dimesions.X1;
+
+        return this.grid[gridX][gridY];
     }
 
     printGrid() {
