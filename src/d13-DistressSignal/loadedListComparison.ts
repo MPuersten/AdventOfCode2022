@@ -1,7 +1,7 @@
 export enum Order {
-    Correct,
-    Incorrect,
-    Continue
+    Correct = -1,
+    Incorrect = 1,
+    Continue = 0
 }
 
 export function isOrderedCorrectly(left: any[], right: any[]): Order {
@@ -19,11 +19,11 @@ export function isOrderedCorrectly(left: any[], right: any[]): Order {
             const result: Order = isOrderedCorrectly(l, r);
             if (result !== Order.Continue) return result;
         }
-        else if (isNum(l)) {
+        else if (isNum(l) && isObj(r)) {
             const result: Order = isOrderedCorrectly([l], r);
             if (result !== Order.Continue) return result;
         }
-        else if (isNum(r)) {
+        else if (isObj(l) && isNum(r)) {
             const result: Order = isOrderedCorrectly(l, [r]);
             if (result !== Order.Continue) return result;
         }
