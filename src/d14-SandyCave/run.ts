@@ -2,8 +2,8 @@ import * as fs from 'fs'
 import Position from '../d09-RopeBridge/position';
 import RockyGrid2D from './rockyGrid2D';
 
-let signalPairText: string[] = (fs.readFileSync('./assets/d14/d14-sample.txt', 'utf-8')).split(/\r?\n/);
-// let signalPairText: string[] = (fs.readFileSync('./assets/d14-input.txt', 'utf-8')).split(/\r?\n/);
+// let signalPairText: string[] = (fs.readFileSync('./assets/d14/d14-sample.txt', 'utf-8')).split(/\r?\n/);
+let signalPairText: string[] = (fs.readFileSync('./assets/d14-input.txt', 'utf-8')).split(/\r?\n/);
 
 let rockPositions: Position[][] = [];
 signalPairText.forEach(line => {
@@ -19,4 +19,6 @@ signalPairText.forEach(line => {
 })
 
 const grid: RockyGrid2D = new RockyGrid2D(rockPositions);
+
+grid.dropSandFromTop(500);
 grid.printGrid();

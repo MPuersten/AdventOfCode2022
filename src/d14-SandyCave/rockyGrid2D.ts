@@ -52,13 +52,13 @@ export default class RockyGrid2D {
     }
 
     private addRocksBetweenPoints(p1: Position, p2: Position) {
-        console.log("Placing new series of rocks...");
+        // console.log("Placing new series of rocks...");
         let distance: number;
         let from1to2: boolean;
 
         // Same column
         if (p1.X === p2.X && p1.Y !== p2.Y) {
-            console.log("Along a column..");
+            // console.log("Along a column..");
             distance = Math.abs(p1.Y - p2.Y) + 1;
             from1to2 = (p1.Y <= p2.Y);
 
@@ -69,7 +69,7 @@ export default class RockyGrid2D {
         }
         // Same Row
         else if (p1.Y === p2.Y && p1.X !== p2.X) {
-            console.log("Along a row..");
+            // console.log("Along a row..");
             distance = Math.abs(p1.X - p2.X + 1);
             from1to2 = (p1.X <= p2.X);
 
@@ -88,12 +88,29 @@ export default class RockyGrid2D {
     }
 
     private addRock(position: Position) {
+        this.addContent(position, '#');
+    }
+
+    dropSandFromTop(column: number) {
+        let sandPosition = this.addSandAtTop(column);
+
+        // start while here
+    }
+
+    private addSandAtTop(column: number) {
+        let sandPosition = new Position(500, 0);
+        this.addContent(sandPosition, 'O');
+
+        return sandPosition;
+    }
+
+    private addContent(position: Position, symbol: string) {
         const gridX = position.Y;
         const gridY = position.X - this.dimesions.X1;
 
-        console.log(`Placing rock at ${gridX}, ${gridY} (${position.X}, ${position.Y})`);
+        // console.log(`Placing rock at ${gridX}, ${gridY} (${position.X}, ${position.Y})`);
 
-        this.grid[gridX][gridY] = '#';
+        this.grid[gridX][gridY] = symbol;
     }
 
     printGrid() {
