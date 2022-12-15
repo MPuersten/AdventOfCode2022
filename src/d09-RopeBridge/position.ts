@@ -6,4 +6,8 @@ export default class Position {
         this.X = x;
         this.Y = y;
     }
+
+    overlapsWith(otherPosition: Position): boolean {
+        return (this.X === otherPosition.X && this.Y === otherPosition.Y);
+    }
 }
