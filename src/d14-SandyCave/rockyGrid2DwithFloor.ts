@@ -3,7 +3,7 @@ import Position from "../d09-RopeBridge/position";
 import Dimesions2D from "./dimensions2D";
 
 
-export default class RockyGrid2D {
+export default class RockyGrid2DWithFloor {
     private grid: string[][] = [];
     private dimesions: Dimesions2D;
     private sandCounter: number = 0;
@@ -30,14 +30,19 @@ export default class RockyGrid2D {
             })
         })
 
+        smallestX1! -= 160;
+        largestX2! += 120;
+
         return new Dimesions2D(smallestX1!, largestX2!, smallestY1, largestY2!);
     }
 
     private buildGrid() {
-        for (let i = 0; i < this.dimesions.Height + 1; i++) {
+        for (let i = 0; i < this.dimesions.Height + 3; i++) {
             let row: string[] = [];
             for (let j = 0; j < this.dimesions.Width + 1; j++) {
-                row.push('.')
+                if (i === this.dimesions.Height + 2) row.push('#');
+                else row.push('.')
+                
             }
 
             this.grid.push(row);
@@ -96,7 +101,13 @@ export default class RockyGrid2D {
     }
 
     private dropSandFromTop(column: number): boolean {
-        let sandPosition: Position = this.addSandAtTop(column);
+        let sandPosition: Position;
+        try {
+            sandPosition = this.addSandAtTop(column);
+        } catch (Error) {
+            return false;
+        }
+        
 
         while(true) {
             try {
@@ -113,6 +124,8 @@ export default class RockyGrid2D {
 
     private addSandAtTop(column: number) {
         let sandPosition = new Position(500, 0);
+        if (this.getContent(sandPosition) === 'O') throw Error();
+
         this.addContent(sandPosition, 'O');
 
         return sandPosition;
