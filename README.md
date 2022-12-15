@@ -4,8 +4,8 @@ https://adventofcode.com/
 
 Repository for advent of code 2022.
 
-Practice for TypeScript - learning fast, appreciative of tips and suggestions.
-Employs TDD when practical as practice with Jest.
+Practicing with TypeScript - appreciative of tips and suggestions.
+Employs TDD when practical for practice with Jest.
 
 ## TypeScript
 Uses TypeScript version 4.9.3
