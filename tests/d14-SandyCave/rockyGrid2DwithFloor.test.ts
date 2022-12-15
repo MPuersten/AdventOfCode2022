@@ -1,8 +1,9 @@
 import * as fs from 'fs'
 import Position from '../../src/d09-RopeBridge/position';
 import RockyGrid2D from '../../src/d14-SandyCave/rockyGrid2D';
+import RockyGrid2DWithFloor from '../../src/d14-SandyCave/rockyGrid2DwithFloor';
 
-describe('Rocky Grid 2D', () => {
+describe('Rocky Grid 2D with Floor', () => {
     let rockPositionSampleText: string[];
     let rockPositionText: string[];
 
@@ -28,21 +29,21 @@ describe('Rocky Grid 2D', () => {
         return rockPositions;
     }
 
-    test('Bottomless sand grain count sample', ()=> {
+    test('Stack until blocking entrance sand grain count sample', ()=> {
         let rockPositions: Position[][] = loadRockPositions(rockPositionSampleText);
 
-        const grid: RockyGrid2D = new RockyGrid2D(rockPositions);
-        grid.dropSandUntilItGoesOffGrid(500);
+        const grid: RockyGrid2DWithFloor = new RockyGrid2DWithFloor(rockPositions);
+        grid.dropSandUntilItClogsEntryPoint(500);
         
-        expect(grid.getSandCount()).toEqual(24);
+        expect(grid.getSandCount()).toEqual(93);
     })
 
-    test('Bottomless sand grain count real', ()=> {
+    test('Stack until blocking entrance sand grain count real', ()=> {
         let rockPositions: Position[][] = loadRockPositions(rockPositionText);
 
-        const grid: RockyGrid2D = new RockyGrid2D(rockPositions);
-        grid.dropSandUntilItGoesOffGrid(500);
-
-        expect(grid.getSandCount()).toEqual(625);
+        const grid: RockyGrid2DWithFloor = new RockyGrid2DWithFloor(rockPositions);
+        grid.dropSandUntilItClogsEntryPoint(500);
+        
+        expect(grid.getSandCount()).toEqual(25193);
     })
 })

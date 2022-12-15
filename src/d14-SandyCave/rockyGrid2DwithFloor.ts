@@ -94,10 +94,12 @@ export default class RockyGrid2DWithFloor {
         this.addContent(position, '#');
     }
 
-    dropSandUntilItGoesOffGrid(column: number) {
+    dropSandUntilItClogsEntryPoint(column: number) {
         while(this.dropSandFromTop(column)) {
             this.sandCounter++;
         }
+
+        if (this.getContent(new Position(500, 0)) !== 'O') throw Error("Floor width overflow, widen or make dynamic.");
     }
 
     private dropSandFromTop(column: number): boolean {
