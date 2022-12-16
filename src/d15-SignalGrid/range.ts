@@ -1,6 +1,6 @@
 export default class Range {
     constructor(
-        public Min: number,
-        public Max: number
+        public min: number,
+        public max: number
     ) {}
 }
