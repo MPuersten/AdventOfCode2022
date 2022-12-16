@@ -26,6 +26,13 @@ signalHistoryText.forEach(line => {
     sensors.addSensor(sensor);
 })
 
-// console.log(JSON.stringify(sensors.sensors));
 let emptyPositions = sensors.getNonBeaconCountInRow(2000000);
 console.log(`Num non beacon positions: ${emptyPositions}`);
+
+const emptyPoint: Position = sensors.findLostBeacon(0, 4000000);
+console.log(
+  `Lost beacon: 
+    x: ${emptyPoint.X}, 
+    y: ${emptyPoint.Y}, 
+    Tuning: ${emptyPoint.X * 4000000 + emptyPoint.Y}`
+);
