@@ -12,7 +12,7 @@ export default class Grid {
     }
 
     private buildGrid() {
-        for (let i = 0; i < this.dimensions.Height + 1; i++) {
+        for (let i = 0; i < this.dimensions.Height + 2; i++) {
             let row: string[] = [];
             for (let j = 0; j < this.dimensions.Width + 1; j++) {
                 row.push(this.defaultCharacter)
@@ -67,6 +67,19 @@ export default class Grid {
         const gridY = position.X - this.dimensions.X1;
 
         return this.grid[gridX][gridY];
+    }
+
+    printRow(rowNum: number) {
+        console.log(this.grid[rowNum].toString().replace(',', ''));
+    }
+
+    getCharCountInRow(rowNum: number, char: string) {
+        let count: number= 0;
+        for (let i = 0; i < this.grid[rowNum].length; i++) {
+            if (this.grid[rowNum][i] === char) count++;
+        }
+
+        return count;
     }
 
     printGrid() {

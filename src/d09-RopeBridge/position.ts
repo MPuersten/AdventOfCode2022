@@ -10,4 +10,8 @@ export default class Position {
     overlapsWith(otherPosition: Position): boolean {
         return (this.X === otherPosition.X && this.Y === otherPosition.Y);
     }
+
+    print(): void {
+        console.log(`Point - X: ${this.X}, Y: ${this.Y}`);
+    }
 }

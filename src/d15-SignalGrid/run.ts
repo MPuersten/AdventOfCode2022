@@ -5,8 +5,10 @@ import { getGridDimensions2D } from './dimensionCalculations';
 import Grid from './grid';
 import SensorMemory from './sensorMemory';
 
-let signalHistoryText: string[] = (fs.readFileSync('./assets/d15/d15-sample.txt', 'utf-8')).split(/\r?\n/);
-// let signalHistoryText: string[] = (fs.readFileSync('./assets/d15-input.txt', 'utf-8')).split(/\r?\n/);
+
+// let signalHistoryText: string[] = (fs.readFileSync('./assets/d15/d15-sample-1.txt', 'utf-8')).split(/\r?\n/);
+// let signalHistoryText: string[] = (fs.readFileSync('./assets/d15/d15-sample.txt', 'utf-8')).split(/\r?\n/);
+let signalHistoryText: string[] = (fs.readFileSync('./assets/d15-input.txt', 'utf-8')).split(/\r?\n/);
 
 const positionPairs: Position[][] = [];
 signalHistoryText.forEach(line => {
@@ -21,9 +23,19 @@ signalHistoryText.forEach(line => {
 })
 
 const gridDimensions: Dimesions2D = getGridDimensions2D(positionPairs);
+gridDimensions.X1 -= 10000;
+gridDimensions.X2 += 10000;
+// const gridDimensions: Dimesions2D = new Dimesions2D(-20, 40, -2, 22);
+
+console.log('Got dimensions.');
+
 const grid: Grid = new Grid(gridDimensions, '.');
+
+console.log('Made grid.');
 
 const sensorMemory: SensorMemory = new SensorMemory(grid, positionPairs);
 sensorMemory.scanAllPoints();
 
-grid.printGrid();
+const blankScannedCount: number = grid.getCharCountInRow(10, '#');
+const sensorCount: number = grid.getCharCountInRow(10, 'S');
+console.log(`Number of non-beacon positions: Blanks: ${blankScannedCount}, Sensors: ${sensorCount}, Total: ${blankScannedCount + sensorCount}`);
