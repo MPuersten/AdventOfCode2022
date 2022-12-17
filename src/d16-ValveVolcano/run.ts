@@ -36,4 +36,5 @@ nodes = nodes.map(node => connectNodeToNeighbors(node, nodes));
 
 // console.log(nodes.forEach(node => console.log(node.getReport())));
 const valveMap: ValveMap = new ValveMap(nodes);
-let maxFlow: number = valveMap.maxPressure(nodes[0], 0, 0);
+let maxFlow: number = valveMap.maxPressure(nodes[0], 0, 0, [nodes[0]], 0);
+console.log(maxFlow);

@@ -7,16 +7,31 @@ export default class ValveMap {
         public nodes: FlowNode[]
     ) {}
 
-    maxPressure(currentNode: FlowNode, elapsedTime: number, flowRate: number) {
+    maxPressure(currentNode: FlowNode, elapsedTime: number, flowRate: number, visitedNodes: FlowNode[], totalFlow: number) {
         if (elapsedTime > 30) return flowRate;
 
         let maxFlowRate: number = flowRate;
+        let newFlow: number = totalFlow + maxFlowRate;
 
         currentNode.neighbors.forEach(neighbor => {
-            const newFlowRate: number = flowRate + neighbor.node.rate;
-            maxFlowRate = Math.max(maxFlowRate, this.maxPressure(neighbor.node, elapsedTime + 1, newFlowRate));
+            let alreadyVisted: boolean = false;
+            visitedNodes.forEach(visited => {
+                if(neighbor.node.name === visited.name) {
+                    alreadyVisted = true;
+                    return;
+                }
+            })
+
+            let newElapsedTime = elapsedTime + 1;
+
+            if (!alreadyVisted) {
+                const newFlowRate: number = flowRate + neighbor.node.rate;
+                visitedNodes.push(neighbor.node);
+                maxFlowRate = Math.max(maxFlowRate, this.maxPressure(neighbor.node, newElapsedTime + 1, newFlowRate, visitedNodes, newFlow));
+            }
+            
         })
 
-        return maxFlowRate;
+        return totalFlow;
     }
 }
