@@ -1,5 +1,7 @@
+import Neighbor from "./neighbor";
+
 export default class FlowNode {
-    neighbors: FlowNode[] = [];
+    neighbors: Neighbor[] = [];
     
     constructor( 
         public name: string,
@@ -9,7 +11,7 @@ export default class FlowNode {
 
     getReport() {
         const attachedNeighbors: string[] = this.neighbors.map(neighbor => {
-            return neighbor.name;
+            return (`${neighbor.node.name}, ${neighbor.distance}`);
         });
 
         return (
